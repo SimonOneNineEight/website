@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next export"
   },
   "dependencies": {
     "@bootstrap-styled/v4": "^3.4.0",
@@ -18,6 +19,7 @@
     "react-bootstrap": "^1.4.3",
     "react-dom": "17.0.1",
     "react-material-ui-carousel": "^2.1.2",
+    "react-typewriter": "^0.4.1",
     "styled-components": "^5.2.1"
   }
 }

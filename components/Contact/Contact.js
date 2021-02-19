@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Container,
   makeStyles,
   Typography,
   List,
@@ -13,47 +14,53 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.white,
+    backgroundColor: theme.palette.white,
     padding: "24px 0 72px",
   },
   title: {
-    padding: "6px 0 12px",
+    padding: "6px 0 30px",
+    textAlign: "center",
   },
-  whiteLink: {
-    color: theme.palette.white,
+  blackLink: {
+    color: theme.palette.primary.main,
+    "&:hover": {
+      "text-decoration": "underline",
+    },
   },
 }));
 export default function Contact() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography className={classes.title} variant="h4" color="inherit">
-        與我聯絡
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemIcon>
-            <EmailIcon style={{ color: "rgba(255,255,255)" }} />
-          </ListItemIcon>
-          <ListItemText primary="Email: ss121549@gmail.com" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <PhoneIcon style={{ color: "rgba(255,255,255)" }} />
-          </ListItemIcon>
-          <ListItemText primary="Phone: 0958-252-069" />
-        </ListItem>
-        <ListItem
-          component="a"
-          href="https://github.com/SimonOneNineEight"
-          className={classes.whiteLink}
-        >
-          <ListItemIcon>
-            <GitHubIcon style={{ color: "rgba(255,255,255)" }} />
-          </ListItemIcon>
-          <ListItemText primary="GitHub: https://github.com/SimonOneNineEight" />
-        </ListItem>
-      </List>
+      <Container xl>
+        <Typography className={classes.title} variant="h3" color="inherit">
+          與我聯繫
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <EmailIcon style={{ color: "rgba(0,0,0)" }} />
+            </ListItemIcon>
+            <ListItemText primary="Email: ss121549@gmail.com" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <PhoneIcon style={{ color: "rgba(0,0,0)" }} />
+            </ListItemIcon>
+            <ListItemText primary="Phone: 0958-252-069" />
+          </ListItem>
+          <ListItem
+            component="a"
+            href="https://github.com/SimonOneNineEight"
+            className={classes.blackLink}
+          >
+            <ListItemIcon>
+              <GitHubIcon style={{ color: "rgba(0,0,0)" }} />
+            </ListItemIcon>
+            <ListItemText primary="GitHub: https://github.com/SimonOneNineEight" />
+          </ListItem>
+        </List>
+      </Container>
     </div>
   );
 }

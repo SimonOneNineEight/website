@@ -1,5 +1,4 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import { SportsRugbySharp } from "@material-ui/icons";
 
 const theme = createMuiTheme({
   palette: {
@@ -15,6 +14,21 @@ const theme = createMuiTheme({
     },
     white: "rgba(255,255,255)",
     background: "rgb(0, 48, 97)",
+  },
+  typography: {
+    fontFamily: [
+      "Nunito",
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "LiHei Pro",
+      "黑體-繁",
+      "微軟正黑體",
+      "sans-serif",
+    ].join(","),
+    h1: {
+      fontWeight: "bold",
+    },
   },
 });
 
