@@ -18,27 +18,26 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.white,
     minHeight: "100vh",
     height: "650px",
-    margin: "auto 0",
+    margin: 0,
+    backgroundImage: 'url("https://i.imgur.com/twYQbl7.jpg")',
+    backgroundRepeat: "no-repeat",
+    backGroundPosiiton: "center",
+    backgroundSize: "cover",
     [theme.breakpoints.down("md")]: {
       padding: "72px 0 0",
       margin: "0 0 72px",
+      backgroundImage: "none",
     },
   },
-  center: {
+  detail: {
+    width: "45%",
     position: "absolute",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-  },
-  img: {
-    width: "60%",
-    objectFit: "contain",
-    margin: "0 30px 0 auto",
-    display: "block",
-    paddingBottom: "12px",
-    [theme.breakpoints.down("md")]: {
-      margin: "auto",
-    },
+    left: "1%",
+    top: "10%",
+    padding: "12px",
+    borderRadius: "10px",
+    backgroundColor: "rgba(0,0,0, 0.3)",
+    [theme.breakpoints.down("lg")]: {},
   },
   info: {
     paddingRight: "30px",
@@ -75,41 +74,32 @@ const useStyles = makeStyles((theme) => ({
 export default function Banner() {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
-      <Grid
-        className={classes.center}
-        container
-        justify="center"
-        alignItems="center"
-      >
-        <Grid item lg={5} justify="flex-start" alignItems="center" width="40%">
-          <img className={classes.img} src="https://i.imgur.com/aHTJJn2.jpg" />
-        </Grid>
-        <Grid item lg>
-          <TypeWriter typing={1} minDelay={100}>
-            <div className={classes.title}>
-              <Typography variant="h2">I'm 黃晟維 Simon Huang</Typography>
-            </div>
-            <Typography variant="h6" className={classes.info}>
-              工作中接觸數據相關的需求而意外開始寫程式，覺得 coding
-              有夠有趣就一頭栽進來開始自學網頁前端；最後以轉職工程師為目標而參加「程式導師實驗計劃第四期」，現在是一個正在努力成長的半路出家型工程師。
+    <div className={classes.root}>
+      <div className={classes.detail}>
+        <TypeWriter typing={1} minDelay={50}>
+          <div className={classes.title}>
+            <Typography variant="h2">
+              <div>I'm 黃晟維</div>
+              <div>Simon Huang</div>
             </Typography>
-            <List className={classes.flexContainer} disablePadding>
-              <ListItem
-                component="a"
-                href="https://github.com/SimonOneNineEight"
-              >
-                <ListItemIcon>
-                  <GitHubIcon style={{ color: "rgba(255, 255, 255)" }} />
-                </ListItemIcon>
-              </ListItem>
-            </List>
-          </TypeWriter>
-        </Grid>
-      </Grid>
+          </div>
+        </TypeWriter>
+        <Typography variant="h6" className={classes.info}>
+          工作中接觸數據相關的需求而意外開始寫程式，覺得 coding
+          有夠有趣就一頭栽進來開始自學網頁前端；最後以轉職工程師為目標而參加「程式導師實驗計劃第四期」，現在是一個正在努力成長的半路出家型工程師。
+        </Typography>
+        <List className={classes.flexContainer} disablePadding>
+          <ListItem component="a" href="https://github.com/SimonOneNineEight">
+            <ListItemIcon>
+              <GitHubIcon style={{ color: "rgba(255, 255, 255)" }} />
+            </ListItemIcon>
+          </ListItem>
+        </List>
+      </div>
+
       <a href="#project" className={classes.expandMore}>
         <ArrowDropDownCircleRoundedIcon fontSize="large" />
       </a>
-    </Container>
+    </div>
   );
 }

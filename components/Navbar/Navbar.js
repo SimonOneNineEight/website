@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import {
   Grid,
@@ -16,6 +16,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import theme from "../../utils/theme";
 
 const drawerWidth = 240;
 
@@ -110,8 +111,18 @@ export default function Navbar() {
     { name: "我們 BLOG", href: "#blog" },
     { name: "與我聯繫", href: "#contactMe" },
   ];
-  const [open, setOpen] = React.useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [isScroll, setIsScroll] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", handleOnScroll);
+  }, []);
+  const handleOnScroll = () => {
+    if (window.scrollY > 100) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
   const handleToggleDrawerOpen = () => {
     setOpen(!open);
   };
@@ -124,10 +135,12 @@ export default function Navbar() {
           (clsx(classes.appBar, {
             [classes.appBarShift]: open,
           }),
-          classes.navbar)
+          isScroll && classes.navbar)
         }
         color="transparent"
         elevation={0}
+        onScroll={handleOnScroll}
+        isScroll={isScroll}
       >
         <Toolbar>
           <IconButton
