@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  Container,
   Stepper,
   Step,
   StepLabel,
@@ -15,12 +16,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     color: theme.palette.white,
     width: "100%",
+    paddingTop: 60,
   },
   white: {
     color: theme.palette.white,
   },
   title: {
-    padding: "6px 0 12px",
+    padding: "6px 0 30px",
+    textAlign: "center",
   },
   actionsContainer: {
     marginBottom: theme.spacing(2),
@@ -34,20 +37,6 @@ function getSteps() {
   return ["學歷", "工作經歷"];
 }
 
-/* {
-  period: "2016/09 - 2019/06",
-  experience: [
-    "舉辦有學生諾貝爾獎之稱的 Hult Prize 校園初賽，並推派優勝隊伍出國角逐 100 萬美元總獎金",
-  ],
-} */
-/* {
-        period: "2018/07 - 2018/08",
-        experience: [
-          "製作台灣公司至上証Ａ股上市之機會和資格報告書並上台簡報。",
-          "了解中國金融市場（Ex：上海證券市場，期貨等）之運作及其相關知識。",
-          "進行企業參訪，深入了解金融產業細節還其運作情形。",
-        ],
-      } */
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -116,9 +105,9 @@ export default function Experience() {
   };
 
   return (
-    <div className={classes.root}>
-      <Typography className={classes.title} variant="h4" color="inherit">
-        我的經歷
+    <Container xl className={classes.root}>
+      <Typography className={classes.title} variant="h3" color="inherit">
+        我的學經歷
       </Typography>
       <Stepper activeStep={activeStep} orientation="vertical">
         {steps.map((label, index) => (
@@ -186,6 +175,6 @@ export default function Experience() {
           </Button>
         </Paper>
       )}
-    </div>
+    </Container>
   );
 }

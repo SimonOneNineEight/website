@@ -7,6 +7,7 @@ import {
   ListItemText,
   Typography,
   Link,
+  Container,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,10 +15,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.background.paper,
     color: theme.palette.white,
-    padding: "24px 0 48px",
+    padding: "60px 0 48px",
   },
   title: {
-    padding: "6px 0 12px",
+    padding: "6px 0 30px",
+    textAlign: "center",
   },
   white: {
     color: theme.palette.white,
@@ -54,41 +56,43 @@ export default function Blog() {
   const classes = useStyles();
 
   return (
-    <List className={classes.root}>
-      <Typography className={classes.title} variant="h4" color="inherit">
-        我的 BLOG
-      </Typography>
-      {blogs.map((blog, index) => (
-        <ListItem alignItems="flex-start" className={classes.listItem}>
-          <ListItemText
-            key={index}
-            primary={
-              <Link href={blog.url}>
-                <Typography
-                  component="span"
-                  variant="h5"
-                  className={classes.inlineWhite}
-                  color="white"
-                >
-                  {blog.title}
-                </Typography>
-              </Link>
-            }
-            secondary={
-              <Link href={blog.url}>
-                <Typography
-                  component="span"
-                  variant="body2"
-                  className={classes.inlineWhite}
-                  color="white"
-                >
-                  {blog.content}
-                </Typography>
-              </Link>
-            }
-          />
-        </ListItem>
-      ))}
-    </List>
+    <Container xl>
+      <List className={classes.root}>
+        <Typography className={classes.title} variant="h3" color="inherit">
+          我的 BLOG
+        </Typography>
+        {blogs.map((blog, index) => (
+          <ListItem alignItems="flex-start" className={classes.listItem}>
+            <ListItemText
+              key={index}
+              primary={
+                <Link href={blog.url}>
+                  <Typography
+                    component="span"
+                    variant="h5"
+                    className={classes.inlineWhite}
+                    color="white"
+                  >
+                    {blog.title}
+                  </Typography>
+                </Link>
+              }
+              secondary={
+                <Link href={blog.url}>
+                  <Typography
+                    component="span"
+                    variant="body2"
+                    className={classes.inlineWhite}
+                    color="white"
+                  >
+                    {blog.content}
+                  </Typography>
+                </Link>
+              }
+            />
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   );
 }
