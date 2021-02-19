@@ -5,18 +5,20 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.secondary.dark,
-    color: theme.palette.white,
+    backgroundColor: theme.palette.white,
+    minHeight: "90vh",
+    paddingTop: 60,
   },
   title: {
-    padding: "6px 0 12px",
+    padding: "6px 0 30px",
+    textAlign: "center",
   },
   carouselWrapper: {
-    width: "auto",
+    width: "80%",
     margin: "0 auto",
   },
   carouselItem: {
-    minHeight: 350,
+    minHeight: 500,
     height: "auto",
     objectFit: "contain",
     position: "relative",
@@ -32,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.primary.transparent,
     color: theme.palette.white,
     borderRadius: 10,
-    padding: "10px 30px",
+    width: "65%",
+    padding: "12px 0",
   },
   itemLinkList: {
     paddingTop: 5,
@@ -65,6 +68,13 @@ export default function Project() {
       gitHubUrl: "https://github.com/SimonOneNineEight/Netflix-clone",
     },
     {
+      title: "個人網站",
+      imgUrl: "https://i.imgur.com/DuYBGdX.png?1",
+      content: "用 React / Next.js 搭配 Material UI 做的個人網站",
+      projectUrl: "https://simon198-website.web.app/",
+      gitHubUrl: "https://github.com/SimonOneNineEight/website",
+    },
+    {
       title: "Teach Table（進行中）",
       imgUrl: "https://i.imgur.com/111Pw2U.png?3",
       content:
@@ -74,45 +84,51 @@ export default function Project() {
   ];
   return (
     <div className={classes.root}>
-      <Typography className={classes.title} variant="h4" color="inherit">
-        我的作品
-      </Typography>
-      <Carousel
-        className={classes.carouselWrapper}
-        animation="slide"
-        interval={8000}
-      >
-        {projectList.map((project, index) => (
-          <Paper
-            key={index}
-            elevation={10}
-            style={{ backgroundImage: `url(${project.imgUrl})` }}
-            className={classes.carouselItem}
-          >
-            <div className={classes.itemDetail}>
-              <Typography variant="h4">{project.title}</Typography>
-              <Typography variant="body1">{project.content}</Typography>
-              <div className={classes.itemLinkList}>
-                <Typography variant="h6">
-                  {project.projectUrl && (
-                    <Link
-                      href={project.projectUrl}
-                      className={classes.itemLink}
-                    >
-                      作品連結
-                    </Link>
-                  )}
-                  {project.gitHubUrl && (
-                    <Link href={project.gitHubUrl} className={classes.itemLink}>
-                      GitHub 連結
-                    </Link>
-                  )}
-                </Typography>
+      <Container xl>
+        <Typography className={classes.title} variant="h3" color="inherit">
+          我的作品
+        </Typography>
+        <Carousel
+          className={classes.carouselWrapper}
+          animation="slide"
+          interval={8000}
+          navButtonsAlwaysVisible
+        >
+          {projectList.map((project, index) => (
+            <Paper
+              key={index}
+              elevation={10}
+              style={{ backgroundImage: `url(${project.imgUrl})` }}
+              className={classes.carouselItem}
+            >
+              <div className={classes.itemDetail}>
+                <Typography variant="h4">{project.title}</Typography>
+                <Typography variant="body1">{project.content}</Typography>
+                <div className={classes.itemLinkList}>
+                  <Typography variant="h6">
+                    {project.projectUrl && (
+                      <Link
+                        href={project.projectUrl}
+                        className={classes.itemLink}
+                      >
+                        作品連結
+                      </Link>
+                    )}
+                    {project.gitHubUrl && (
+                      <Link
+                        href={project.gitHubUrl}
+                        className={classes.itemLink}
+                      >
+                        GitHub 連結
+                      </Link>
+                    )}
+                  </Typography>
+                </div>
               </div>
-            </div>
-          </Paper>
-        ))}
-      </Carousel>
+            </Paper>
+          ))}
+        </Carousel>
+      </Container>
     </div>
   );
 }

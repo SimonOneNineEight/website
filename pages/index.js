@@ -10,6 +10,7 @@ import Contact from "../components/Contact";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.dark,
+    scrollBehavior: "smooth",
   },
 }));
 
@@ -20,26 +21,24 @@ export default function Home() {
       <Head>
         <title>Simon Huang</title>
       </Head>
-      <Container>
-        <Navbar />
-        <main>
-          <div id="aboutMe">
-            <Banner />
-          </div>
-          <div id="project">
-            <Project id="project" />
-          </div>
-          <div id="experience">
-            <Experience id="experience" />
-          </div>
-          <div id="blog">
-            <Blog />
-          </div>
-          <div id="contactMe">
-            <Contact />
-          </div>
-        </main>
-      </Container>
+      <Navbar />
+      <main>
+        <div id="aboutMe">
+          <Banner />
+        </div>
+        <div id="project">
+          <Project id="project" />
+        </div>
+        <div id="experience">
+          <Experience id="experience" />
+        </div>
+        <div id="blog">
+          <Blog />
+        </div>
+        <div id="contactMe">
+          <Contact />
+        </div>
+      </main>
     </div>
   );
 }

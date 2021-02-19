@@ -11,8 +11,6 @@ import {
   Divider,
   List,
   ListItem,
-  ListItemIcon,
-  ListItemText,
 } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
@@ -83,8 +81,22 @@ const useStyles = makeStyles((theme) => ({
   navbar: {
     background: theme.palette.background,
   },
+  navbarLarge: {
+    margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      visibility: "hidden",
+    },
+  },
   navs: {
     color: theme.palette.white,
+    "&+&": {
+      paddingLeft: "12px",
+    },
+  },
+  displayNone: {
+    [theme.breakpoints.up("md")]: {
+      visibility: "hidden",
+    },
   },
 }));
 
@@ -100,12 +112,8 @@ export default function Navbar() {
   ];
   const [open, setOpen] = React.useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleToggleDrawerOpen = () => {
+    setOpen(!open);
   };
 
   return (
@@ -118,18 +126,33 @@ export default function Navbar() {
           }),
           classes.navbar)
         }
+        color="transparent"
         elevation={0}
       >
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={handleToggleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
+            className={
+              (clsx(classes.menuButton, open && classes.hide),
+              classes.displayNone)
+            }
           >
-            <MenuIcon />
+            <MenuIcon style={{ color: "rgba(255,255,255)" }} />
           </IconButton>
+          <Typography
+            className={classes.navbarLarge}
+            variant="h6"
+            color="white"
+          >
+            {navs.map((nav, index) => (
+              <Link href={nav.href} className={classes.navs} key={index}>
+                {nav.name}
+              </Link>
+            ))}
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -142,7 +165,7 @@ export default function Navbar() {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleToggleDrawerOpen}>
             {theme.direction === "ltr" ? (
               <ChevronLeftIcon />
             ) : (
@@ -154,7 +177,11 @@ export default function Navbar() {
         <List>
           {navs.map((nav, index) => (
             <ListItem button href={nav.href} key={nav.name}>
-              <Link href={nav.href} className={classes.white}>
+              <Link
+                href={nav.href}
+                className={classes.white}
+                onClick={handleToggleDrawerOpen}
+              >
                 <Typography variant="subtitle1" color="primary">
                   {nav.name}
                 </Typography>
